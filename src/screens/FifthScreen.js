@@ -1,7 +1,24 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Text, Image, StyleSheet, SafeAreaView, BackHandler, TouchableOpacity } from 'react-native';
 
 const FifthScreen = (props) => {
+
+    useEffect(() => {
+        const backAction = () => {
+            props.navigation.navigate('Fourth')
+            return true;
+        };
+
+        const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            backAction
+        );
+
+        return () => {
+            BackHandler.removeEventListener("hardwareBackPress",
+                () => backAction)
+        };
+    }, []);
     return (
         <SafeAreaView style={styles.container}>
             <View style={{ justifyContent: 'space-around' }}>

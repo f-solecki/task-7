@@ -1,7 +1,24 @@
-import React from 'react';
-import { View, Text, Button, Image, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Text, Image, StyleSheet, SafeAreaView, BackHandler, TouchableOpacity } from 'react-native';
 
 const ThirdScreen = (props) => {
+
+    useEffect(() => {
+        const thirdBackAction = () => {
+            props.navigation.navigate('Second')
+            return true;
+        };
+
+        const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            thirdBackAction
+        );
+
+        return () => {
+            BackHandler.removeEventListener("hardwareBackPress",
+                () => thirdBackAction)
+        };
+    }, []);
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.title}>React Navigation</Text>

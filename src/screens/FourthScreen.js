@@ -1,7 +1,24 @@
-import React from 'react';
-import { View, Text, Button, Image, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Text, TouchableOpacity, Image, StyleSheet, SafeAreaView, BackHandler } from 'react-native';
 
 const FourthScreen = (props) => {
+
+    useEffect(() => {
+        const fourthBackAction = () => {
+            props.navigation.navigate('Third')
+            return true;
+        };
+
+        const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            fourthBackAction
+        );
+
+        return () => {
+            BackHandler.removeEventListener("hardwareBackPress",
+                () => fourthBackAction)
+        };
+    }, []);
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.title}>Stack Navigator</Text>

@@ -1,15 +1,7 @@
 import React from 'react';
-import { View, Text, Button, Image, StyleSheet, SafeAreaView, Platform, TouchableOpacity } from 'react-native';
-import { WebView } from 'react-native-webview'
+import { View, Text, Image, StyleSheet, SafeAreaView, Platform, TouchableOpacity } from 'react-native';
 
 const FirstScreen = (props) => {
-
-    const seeMore = () => {
-        console.log("działa")
-        return <WebView source={{
-            uri: 'https://github.com/facebook/react-native'
-        }} />
-    }
 
     return (
         <SafeAreaView style={styles.container}>
